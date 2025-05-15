@@ -32,7 +32,12 @@ Rails.application.routes.draw do
     get '/customers/check' => 'customers#check'
     patch '/customers/withdraw' => 'customers#withdraw'
 
-    resources :cart_items, only: [:index, :update, :destroy, :destroy_all, :create] 
+    get '/cart_items' => 'cart_items#index'
+    patch '/cart_items/:id' => 'cart_items#update'
+    delete '/cart_items/:id' => 'cart_items#destroy'
+    delete '/cart_items/destroy_all' => 'cart_items#destroy_all'
+    post '/cart_items' => 'cart_items#create'
+
     resources :orders, only: [:new, :check, :confirm, :create, :index, :show] 
     resources :addresses, only: [:index, :edit, :create, :update, :destroy] 
   end
