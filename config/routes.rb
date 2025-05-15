@@ -1,5 +1,14 @@
 Rails.application.routes.draw do
-  devise_for :admins
+  namespace :public do
+    get 'customers/show'
+    get 'customers/edit'
+    get 'customers/update'
+    get 'customers/check'
+    get 'customers/withdraw'
+  end
+  devise_for :admins, controllers: {
+    sessions: 'admins/sessions'
+  }
   devise_for :customers
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root to: "public/homes#top"
@@ -13,9 +22,15 @@ Rails.application.routes.draw do
     get 'homes/top'
   end
 
-  namespace :public do
+  scope module: :public do
     resources :items, only: [:index, :show]
-    resources :customers, only: [:show, :edit, :update, :check, :withdraw] 
+
+    get '/customers/mypage' => 'customers#show'
+    get '/customers/information/edit' => 'customers#edit'
+    patch '/customers/information' => 'customers#update'
+    get '/customers/check' => 'customers#check'
+    patch '/customers/withdraw' => 'customers#withdraw'
+
     resources :cart_items, only: [:index, :update, :destroy, :destroy_all, :create] 
     resources :orders, only: [:new, :check, :confirm, :create, :index, :show] 
     resources :addresses, only: [:index, :edit, :create, :update, :destroy] 
