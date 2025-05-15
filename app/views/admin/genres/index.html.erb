@@ -4,7 +4,7 @@
   </div>
 <% end %>
 <h1 class="text-center">ジャンル一覧・追加</h1>
-
+<%= form.label :category_name, "ジャンル名", style: "text-align: left;" %>
 <div class="row justify-content-center">
   <div class="col-md-6">
     <%= form_with(model: @genre, url: admin_genres_path, class: 'form-group') do |f| %>
