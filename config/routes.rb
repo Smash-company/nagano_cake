@@ -1,11 +1,4 @@
 Rails.application.routes.draw do
-  namespace :public do
-    get 'customers/show'
-    get 'customers/edit'
-    get 'customers/update'
-    get 'customers/check'
-    get 'customers/withdraw'
-  end
   devise_for :admins, controllers: {
     sessions: 'admins/sessions'
   }
