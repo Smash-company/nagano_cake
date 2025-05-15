@@ -1,0 +1,34 @@
+<h1>会員情報編集</h1>
+
+<%= form_with model: @customer do |f| %>
+  <label for="inputName">氏名</label>
+  <%= f.text_field :first_name, autofocus: true, id:"inputFirstName", placeholder:"姓"%>
+  <%= f.text_field :last_name, autofocus: true, id:"inputLastName", placeholder:"名"%>
+
+  <label for="inputNameKana">フリガナ</label>
+  <%= f.text_field :first_name_kana, autofocus: true, id:"inputFirstNameKana", placeholder:"セイ"%>
+  <%= f.text_field :last_name_kana, autofocus: true, id:"inputLastNameKana", placeholder:"メイ"%>
+
+  <label for="inputPostalCode">郵便番号</label>
+  <%= f.text_field :postal_code, autofocus: true, id:"inputPostalCode", placeholder:"郵便番号"%>
+
+  <label for="inputAddress">住所</label>
+  <%= f.text_field :address, autofocus: true, id:"Address", placeholder:"住所"%>
+
+  <label for="inputPhoneNumber">電話番号</label>
+  <%= f.text_field :phone_number, autofocus: true, id:"inputPhoneNumber", placeholder:"電話番号"%>
+
+  <label for="inputEmail">メールアドレス</label>
+  <%= f.text_field :email, autofocus: true, id:"inputEmail", placeholder:"メールアドレス"%>
+
+  <div class="btn-wrapper col-10 mx-auto">
+    <div class="row">
+      <%= f.submit "編集内容を保存", customers_mypage_path, class: "btn btn-success"%>
+    </div>
+
+    <div class="row">
+      <%= link_to "退会する", customers_check_path, class: "btn btn-danger"%>
+    </div>
+  </div>
+
+<% end %>
