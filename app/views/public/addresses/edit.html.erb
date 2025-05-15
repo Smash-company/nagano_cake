@@ -1,2 +1,47 @@
-<h1>Public::Addresses#edit</h1>
-<p>Find me in app/views/public/addresses/edit.html.erb</p>
+<!--配送先編集ページ-->
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h5 class="my-4">
+        <span class=" p-2 offset-1" style="background-color: #eee;">配送先編集</span>
+      </h5>
+
+      <%= form_with(model: @address, local: true, class: "form") do |form| %>
+        <% if @address.errors.any? %>
+          <div id="error_explanation" class="alert alert-danger">
+            <h2><%= pluralize(@address.errors.count, "error") %> が発生しました:</h2>
+            <ul>
+              <% @address.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+        
+        <div class="form-group row">
+         <label for="postal_code" class="col-3 mr-2">郵便番号(ハイフンなし)</label> 
+          <div class='col-3'>
+           <%= form.text_field :postal_code, class: 'form-control'%>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="address" class="col-3 mr-2">住所</label>
+          <div class='col-5'>
+           <%= form.text_area :address, class: 'form-control', rows: 1%>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="name" class="col-3 mr-2">宛名</label>
+          <div class='col-3'>
+           <%= form.text_field :name, class: 'form-control'%>
+          </div>
+          <div class='col-3 offset-2'>
+           <%= form.submit '変更内容を保存', class: 'btn btn-success' %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
