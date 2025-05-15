@@ -1,2 +1,44 @@
-<h1>Public::Items#show</h1>
-<p>Find me in app/views/public/items/show.html.erb</p>
+<!--Customer用商品詳細ページ-->
+
+<div class="container ">
+  <div class="row m-5">
+    <div class="col-12 col-md-12 col-lg-3">
+      <!-- ジャンル検索サイドバー / パーシャル表示 -->
+      <%= render "public/shared/sidebar", genres: @genres %>
+    </div>
+
+    <div class="col-12 col-lg-5 mt-5 ">
+      <div class="text-center ">
+        <%= image_tag @item.get_image(300,200) %>
+      </div>
+    </div>
+    
+    <div class="col-12 col-md-12 col-lg-4 mt-5 ">
+      <!--商品名-->
+      <h4 class="my-3">
+        <strong>
+          <%= @item.name %>
+        </strong>
+      </h4>
+      <!--紹介文-->
+      <h5 class="mb-3">
+        <%= @item.introduction %>
+      </h5>
+      <!--税込・税抜価格表示-->
+      <div class="row d-flex pl-3">
+        <h4>¥<%=@item.add_tax_price.to_s(:delimited) %></h4>
+        <p>（税込）</p>
+      </div>
+      <!--サインインしてる場合に表示-->    <!--カートの作り方で変更検討中-->
+      <% if customer_signed_in? %>
+        <%= form_with(model: @cart_item, url: cart_items_path, method: :post, local: true) do |f| %>
+          <div class="d-flex">
+            <div class="mr-3"><%= f.select :amount, *[1..10], {prompt: "個数選択"},{required: true} %></div>
+            <%= f.hidden_field :item_id, :value =>@item.id %>
+            <%= f.submit "カートに入れる", class: "btn btn-success mt-3" %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
