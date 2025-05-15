@@ -1,2 +1,42 @@
-<h1>Public::Items#index</h1>
-<p>Find me in app/views/public/items/index.html.erb</p>
+<!--Customer用商品登録一覧ページ-->
+
+<div class="container">
+  <div class="row mt-5 mb-3">
+    <div class="col-3"></div>
+    <h2><strong>商品一覧</strong></h2>
+    <h5>（全<%= @active_items_count %>件）</h5>
+  </div>
+
+  <div class="row">
+    <!-- ジャンル検索サイドバー / パーシャル表示 -->
+    <div class="col-12 col-lg-3">
+      <%= render "public/shared/sidebar", genres: @genres%>
+    </div>
+    <div class="col-md-12 col-lg-9">
+      <div class="row">
+        <!--商品一覧を表示・コントローラで販売ステータスtrueのみを指定-->
+        <% @items.each do |item| %>
+          <!--商品画像・商品名に詳細ページへリンクをつける-->
+          <div class="col-3 mb-3">
+              <%= link_to item_path(item.id) do %>
+                <%= image_tag item.get_image(150,100) %>
+              <% end %>
+              <%= link_to item_path(item.id) do %>
+                <p class="item_name">
+                  <strong><%= item.name %></strong>
+                </p>
+              <% end %>
+              <!--税抜金額の表示-->
+              <strong>¥<%= item.price.to_s(:delimited) %></strong>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <!--ページネーション-->
+  <div class="row justify-content-center mt-5">
+    <%= paginate @items, theme: 'bootstrap-5' %>
+  </div>
+
+</div>

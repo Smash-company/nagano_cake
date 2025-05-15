@@ -10,7 +10,22 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <%= yield %>
+  <body class="d-flex flex-column vh-100">
+
+  <!--ヘッダー部分（予定）-->
+
+  <div><%= render 'layouts/header' %></div>
+
+  <!--ボディ部分（予定）-->
+
+  <p class='text-success'><%= flash[:notice] %></p>
+  <p class='text-danger'><%= flash[:alert] %></p>
+
+  <%= yield %>
+
+  <!--フッター部分（予定）-->
+
+  <%= render "layouts/footer" %>
+
   </body>
 </html>

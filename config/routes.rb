@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   devise_for :customers
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root to: "public/homes#top"
+  get '/about' => 'public/homes#about', as: 'about'
 
   namespace :admin do
     resources :items, only: [:index, :new, :create, :show, :edit, :update]
@@ -19,7 +20,7 @@ Rails.application.routes.draw do
     resources :customers, only: [:index, :show, :edit, :update] 
     resources :orders, only: [:show, :update] 
     resources :order_details, only: [:update] 
-    get 'homes/top'
+    root to: 'homes#top'
   end
 
   scope module: :public do
