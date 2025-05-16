@@ -6,7 +6,7 @@
     <h3>注文情報入力</h3>
     <%= form_with model: Order.new, url: confirm_orders_path, method: :get do |f|  %>
 
-    <h4>支払い方法</h4>
+    <h4>支払方法</h4>
      <%= f.radio_button :pay_method, :credit_card, checked: true %>
      <%= f.label :pay_method, Order.pay_methods_i18n[:credit_card], {value: :credit_card} %>
     <br>
