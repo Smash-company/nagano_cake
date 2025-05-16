@@ -34,7 +34,7 @@
         <%= form_with(model: @cart_item, url: cart_items_path, method: :post, local: true) do |f| %>
           <div class="d-flex">
             <div class="mr-3"><%= f.select :amount, *[1..10], {prompt: "個数選択"},{required: true} %></div>
-            <%= f.hidden_field :item_id, :value =>@item.id %>
+            <%= f.hidden_field :item_id, :value => @item.id %>
             <%= f.submit "カートに入れる", class: "btn btn-success mt-3" %>
           </div>
         <% end %>
