@@ -1,2 +1,64 @@
-<h1>Public::Orders#show</h1>
-<p>Find me in app/views/public/orders/show.html.erb</p>
+<div class="container p-3">
+  <div class="row">
+    <%= render 'public/shared/header.html.erb' %>
+
+  <div class="col-md-12">
+    <h3>注文履歴詳細</h3>
+
+    <h4>注文情報</h4>
+    <table class="table">
+      <tr>
+        <td>注文日</td>
+        <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
+      </tr>
+      <tr>
+        <td>配送先</td>
+        <td>〒<%= @order.post_code + "　" + @order.address + "　" + @order.name %></td>
+      </tr>
+      <tr>
+        <td>支払方法</td>
+        <td><%= @order.pay_method_i18n %></td>
+      </tr>
+      <tr>
+        <td>ステータス</td>
+        <td><%= @order.status_i18n %></td>
+      </tr>
+    </table>
+
+    <h4>請求情報</h4>
+    <table class="table">
+      <tr>
+        <td>商品合計</td>
+        <td><%= @order.total_price %></td>
+      </tr>
+      <tr>
+        <td>配送料</td>
+        <td><%= @order.shipping_fee %></td>
+      </tr>
+      <tr>
+        <td>ご請求額</td>
+        <td><%= @order.total_price + @order.shipping_fee %></td>
+      </tr>
+    </table>
+
+    <h4>注文内容</h4>
+    <table class="table">
+      <tr>
+        <td>商品</td>
+        <td>単価(税込)</td>
+        <td>個数</td>
+        <td>小計</td>
+      </tr>
+      <% @order_details.each do |order_detail| %>
+        <tr>
+          <td><%= order_detail.item.name %></td>
+          <td><%= order_detail.item.price %></td>
+          <td><%= order_detail.quantity %></td>
+          <td><%= order_detail.quantity * order_detail.item.price %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+  <%= render 'public/shared/footer.html.erb' %>
+  </div>
+</div>
