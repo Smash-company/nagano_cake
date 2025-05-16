@@ -3,7 +3,7 @@ class Admin::GenresController < ApplicationController
 
   def index
     @genres = Genre.all
-    @genres = Genre.new
+    @genre = Genre.new
   end
 
   def create

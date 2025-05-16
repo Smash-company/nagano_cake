@@ -3,7 +3,7 @@
 
 <div class="btn-wrapper col-10 mx-auto">
   <div class="row">
-    <%= link_to "編集する", customers_information_edit_path class: "btn btn-success" %>
+    <%= link_to "編集する", customers_information_edit_path(current_customer.id), class: "btn btn-success" %>
   </div>
 </div>
 
@@ -42,13 +42,13 @@
 <h2>配送先</h2>
   <div class="btn-wrapper col-10 mx-auto">
     <div class="row">
-      <%= link_to "一覧を見る", public_address_path, class: "btn btn-info" %>
+      <%= link_to "一覧を見る", addresses_path, class: "btn btn-info" %>
     </div>
   </div>
 
 <h2>注文履歴</h2>
   <div class="btn-wrapper col-10 mx-auto">
     <div class="row">
-      <%= link_to "一覧を見る", public_orders_path, class: "btn btn-info" %>
+      <%= link_to "一覧を見る", orders_path, class: "btn btn-info" %>
     </div>
   </div>

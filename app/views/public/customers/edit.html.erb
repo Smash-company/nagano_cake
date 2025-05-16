@@ -1,6 +1,6 @@
 <h1>会員情報編集</h1>
 
-<%= form_with model: @customer do |f| %>
+<%= form_with model: @customer,url: customers_information_path, local: true, method: :patch do |f| %>
   <label for="inputName">氏名</label>
   <%= f.text_field :first_name, autofocus: true, id:"inputFirstName", placeholder:"姓"%>
   <%= f.text_field :last_name, autofocus: true, id:"inputLastName", placeholder:"名"%>
@@ -23,7 +23,7 @@
 
   <div class="btn-wrapper col-10 mx-auto">
     <div class="row">
-      <%= f.submit "編集内容を保存", customers_mypage_path, class: "btn btn-success"%>
+      <%= f.submit "編集内容を保存", class: "btn btn-success"%>
     </div>
 
     <div class="row">

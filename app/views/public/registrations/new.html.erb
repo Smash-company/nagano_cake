@@ -1,40 +1,40 @@
 <h2>Sign up</h2>
 
 <%= form_with model: @customer, url: customer_registration_path do |f| %>
-  <%= render "publics/shared/error_messages", resource: resource %>
+  <%= render "public/shared/error_messages", resource: resource %>
 
   <div class="field">
-    <%= f.label :first_name %>
-    <%= f.email_field :first_name, autofocus: true, autocomplete: "first_name" %>
     <%= f.label :last_name %>
-    <%= f.email_field :last_name, autofocus: true, autocomplete: "last_name" %>
+    <%= f.text_field :last_name, autofocus: true %>
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name, autofocus: true %>
   </div>
 
   <div class="field">
     <%= f.label :last_name_kana %>
-    <%= f.email_field :last_name_kana, autofocus: true, autocomplete: "last_name_kana" %>
+    <%= f.text_field :last_name_kana, autofocus: true %>
     <%= f.label :first_name_kana %>
-    <%= f.email_field :first_name_kana, autofocus: true, autocomplete: "first_name_kana" %>
+    <%= f.text_field :first_name_kana, autofocus: true %>
   </div>
 
   <div class="field">
-    <%= f.label :email %><br />
+    <%= f.label :email %>
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
 
   <div class="field">
   <%= f.label :postal_code %>
-  <%= f.email_field :postal_code, autofocus: true, autocomplete: "postal_code" %>
+  <%= f.text_field :postal_code, autofocus: true %>
   </div>
 
   <div class="field">
   <%= f.label :address %>
-  <%= f.email_field :address, autofocus: true, autocomplete: "address" %>
+  <%= f.text_field :address, autofocus: true %>
   </div>
 
   <div class="field">
   <%= f.label :phone_number %>
-  <%= f.email_field :phone_number, autofocus: true, autocomplete: "phone_number" %>
+  <%= f.text_field :phone_number, autofocus: true %>
   </div>
 
   <div class="field">
@@ -59,7 +59,7 @@
 
 <h2>すでに登録済みの方</h2>
 <p>
-  <%= link_to "こちら", public_session_path %> からログインしてください。
+  <%= link_to "こちら", customer_session_path %> からログインしてください。
 </p>
 
-<%= render "publics/shared/links" %>
+<%= render "public/shared/links" %>

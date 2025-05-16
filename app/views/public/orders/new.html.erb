@@ -1,10 +1,5 @@
-<div class="container p-3">
-  <div class="row">
-  <%= render 'public/shared/header.html.erb' %>
-  <div class="col-md-12">
-
     <h3>注文情報入力</h3>
-    <%= form_with model: Order.new, url: confirm_orders_path, method: :get do |f|  %>
+    <%= form_with model: Order.new, url: orders_check_path, method: :post do |f|  %>
 
     <h4>支払方法</h4>
      <%= f.radio_button :pay_method, :credit_card, checked: true %>
@@ -47,9 +42,3 @@
     <br>
     <%= f.submit "確認画面へ進む", class: "btn btn-info" %>
     <% end %>
-
-  </div>
-
-  <%= render 'public/shared/footer.html.erb' %>
-  </div>
-</div>
