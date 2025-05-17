@@ -31,7 +31,7 @@
       </div>
       <!--サインインしてる場合に表示-->    <!--カートの作り方で変更検討中-->
       <% if customer_signed_in? %>
-        <%= form_with(model: @cart_item, url: cart_items_path, method: :post, local: true) do |f| %>
+        <%= form_with model: @cart_item, url: cart_items_path, method: :post, local:true do |f| %>
           <div class="d-flex">
             <div class="mr-3"><%= f.select :amount, *[1..10], {prompt: "個数選択"},{required: true} %></div>
             <%= f.hidden_field :item_id, :value => @item.id %>

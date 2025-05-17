@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :admins, controllers: {
+  devise_for :admin, controllers: {
     sessions: 'admin/sessions'
   }
   devise_for :customers, controllers: {
@@ -26,12 +26,12 @@ Rails.application.routes.draw do
     get '/customers/check' => 'customers#check'
     patch '/customers/withdraw' => 'customers#withdraw'
 
-    delete '/cart_items/destroy_all' => 'public/cart_items#destroy_all'
+    delete '/cart_items/destroy_all' => 'cart_items#destroy_all'
 
-    post '/orders/confirm' => 'public/orders#confirm'
-    get '/orders/check' => 'public/orders#check'
+    post '/orders/check' => 'orders#check'
+    get '/orders/confirm' => 'orders#confirm'
 
-    get '/search' => 'public/items#search'
+    get '/search' => 'items#search'
 
     resources :items, only: [:index, :show]
     resources :cart_items, only: [:index, :update, :destroy, :create]

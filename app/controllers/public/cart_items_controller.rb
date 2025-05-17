@@ -12,7 +12,7 @@ class Public::CartItemsController < ApplicationController
       # 追加した「params[:cart_item][:item_id]」を加える、to_iで数字として扱う
       cart_item.amount += params[:cart_item][:amount].to_i
       # カート商品を保存後はカートアイテム一覧へページ遷移
-      cart_item.save
+      cart_item.update(amount: cart_item.amount)
       redirect_to cart_items_path
       # もしカート内に同じ商品がない場合は通常保存
     elsif @cart_item.save
@@ -46,13 +46,12 @@ class Public::CartItemsController < ApplicationController
   def destroy
     cart_item = CartItem.find(params[:id])
     cart_item.destroy
-    @cart_items = CartItem.all
-    render 'index'
+    redirect_to cart_items_path
   end
 
   def destroy_all
     current_customer.cart_items.destroy_all
-    render 'index'
+    redirect_to cart_items_path
   end
 
   private
