@@ -1,20 +1,19 @@
 class Public::CustomersController < ApplicationController
-  before_action :is_matching_login_user
 
   def show
-    @customer = Customer.find(params[:id])
+    @customer = Customer.find(current_customer.id)
   end
 
   def edit
-    @customer = Customer.find(params[:id])
+    @customer = Customer.find(current_customer.id)
   end
 
   def update
-    @customer = Customer.find(params[:id])
+    @customer = Customer.find(current_customer.id)
     if @customer.update(customer_params)
-      redirect_to customer_path(@customer)
+      redirect_to customers_mypage_path
     else 
-      @customer = Customer.find(params[:id])
+      @customer = Customer.find(current_customer.id)
       render :edit
     end
   end
@@ -23,7 +22,7 @@ class Public::CustomersController < ApplicationController
   end
 
   def withdraw
-    @customer = Customer.find(params[:id])
+    @customer = Customer.find(current_customer.id)
     @customer.update(is_active: false)
     reset_session
     flash[:notice] = "退会処理を実行しました"
@@ -36,10 +35,4 @@ class Public::CustomersController < ApplicationController
     params.require(:customer).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :email, :postal_code, :address, :phone_number)
   end
 
-  def is_matching_login_user
-    customer = Customer.find(params[:id])
-    unless customer.id == current_customer.id
-      redirect_to customer_path(current_customer)
-    end
-  end
 end

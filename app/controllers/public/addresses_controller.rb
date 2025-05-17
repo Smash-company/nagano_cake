@@ -1,6 +1,5 @@
 class Public::AddressesController < ApplicationController
   before_action :authenticate_customer!
-  before_action :set_address, only: [:edit, :update, :destroy]
 
   def index
     @addresses = current_customer.addresses

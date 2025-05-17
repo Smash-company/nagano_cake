@@ -4,18 +4,24 @@ class Public::CartItemsController < ApplicationController
   end
 
   def create
-    cart_item = CartItem.new(cart_item_params)
-    cart_item.customer_id = current_customer.index
-    cart_item.item_id = cart_item_paramas[:item_id]
-
-    if CartItem.find_by(item_id: params[:cart_item][:item_id])
-      cart_item = CartItem.find_by(item_id: params[:cart_item])
+    @cart_item = current_customer.cart_items.new(cart_item_params)
+      # もともとカート内に同じ商品があれば、「数量を追加」を更新・保存する
+      # もともとカートにあるもの「item_id」、今追加した「params[:cart_item][:item_id]」
+    if current_customer.cart_items.find_by(item_id: params[:cart_item][:item_id]).present?
+      cart_item = current_customer.cart_items.find_by(item_id: params[:cart_item][:item_id])
+      # 追加した「params[:cart_item][:item_id]」を加える、to_iで数字として扱う
       cart_item.amount += params[:cart_item][:amount].to_i
+      # カート商品を保存後はカートアイテム一覧へページ遷移
       cart_item.update(amount: cart_item.amount)
       redirect_to cart_items_path
+      # もしカート内に同じ商品がない場合は通常保存
+    elsif @cart_item.save
+          @cart_items = current_customer.cart_items.all
+          render :index
+      #保存できなかった場合
     else
-      cart_item.save
-      redirect_to cart_items_path
+      @cart_items = current_customer.cart_items
+      render :index
     end
   end
 
@@ -28,19 +34,24 @@ class Public::CartItemsController < ApplicationController
   end
 
   def update
-    cart_item = CartItem.find(params[:id])
-    cart_item.update(cart_item_params)
-    redirect_back(fallback_location: root_path)
+    @cart_item = CartItem.find(params[:id])
+    if @cart_item.update(cart_item_params)
+      redirect_to cart_items_path
+    else
+      @cart_items = current_customer.cart_items
+      render :index
+    end
   end
 
   def destroy
-    CartItem.destroy
-    redirect_back(fallback_location: root_path)
+    cart_item = CartItem.find(params[:id])
+    cart_item.destroy
+    redirect_to cart_items_path
   end
 
   def destroy_all
-    CartItem.destroy_all
-    redirect_back(fallback_location: root_path)
+    current_customer.cart_items.destroy_all
+    redirect_to cart_items_path
   end
 
   private

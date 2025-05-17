@@ -21,7 +21,7 @@
 
         <tr>
           <td>郵便番号</td>
-          <td><%= f.text_field :postcode %></td>
+          <td><%= f.text_field :postal_code %></td>
           <td></td>
         </tr>
 
@@ -46,11 +46,11 @@
         <tr>
           <td>会員ステータス</td>
           <td>
-            <%= f.radio_button :is_deleted, :false %>
-            <%= f.label :is_deleted, "有効", { value: :false }  %>
+            <%= f.radio_button :is_active, :true %>
+            <%= f.label :is_active, "有効", { value: :true }  %>
             
-            <%= f.radio_button :is_deleted, :true %>
-            <%= f.label :is_deleted, "退会", { value: :true } %>
+            <%= f.radio_button :is_active, :false %>
+            <%= f.label :is_active, "退会", { value: :false } %>
           </td>
         </tr>
         

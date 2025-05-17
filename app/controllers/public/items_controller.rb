@@ -5,12 +5,6 @@ class Public::ItemsController < ApplicationController
     @items = Item.where(is_active: true).page(params[:page]).per(8)
     @active_items_count = Item.where(is_active: true).count
     @genres = Genre.all
-    # ジャンルIDに紐づけ
-    if params[:genre_id].present?
-      @genre = Genre.find(params[:genre_id])
-      @items = @genre.items.where(is_active: true).page(params[:page]).per(8)
-      @active_items_count = @genre.items.where(is_active: true).count
-    end
   end
 
 

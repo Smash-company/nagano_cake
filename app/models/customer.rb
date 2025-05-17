@@ -17,10 +17,10 @@ class Customer < ApplicationRecord
     end
     
     def customer_status
-      if is_deleted == true
-        "退会"
-      else
+      if is_active == true
         "有効"
+      else
+        "無効"
       end
     end
 
