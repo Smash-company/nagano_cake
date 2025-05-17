@@ -17,11 +17,12 @@
   <div><%= render 'layouts/header' %></div>
 
   <!--ボディ部分（予定）-->
+  <main style="background-color: #FFEDFA;">
+    <p class='text-success'><%= flash[:notice] %></p>
+    <p class='text-danger'><%= flash[:alert] %></p>
 
-  <p class='text-success'><%= flash[:notice] %></p>
-  <p class='text-danger'><%= flash[:alert] %></p>
-
-  <%= yield %>
+    <%= yield %>
+  </main>
 
   <!--フッター部分（予定）-->
 

@@ -1,48 +1,46 @@
 <header>
-  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color: #EE3465;">
     <div class="container-fluid">
       <nav  class="navbar bg-body-tertiary">
         <div  class="container">
           <a href="<%= root_path %>">
             <%= link_to root_path do %>
-              <%= image_tag "logo.png", size: '150x150' %>
+              <%= image_tag "logo.png", size: '100x100' %>
             <% end %>
           </a>
         </div>
       </nav>
-      
-      <button type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
-        <span></span>
-      </button>
 
-      <div id="navbarSupportedContent">
-        <ul>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="d-flex flex-column w-100">
+          <ul class="navbar-nav ml-auto mx-3 text-light">
 
           <!-- カスタマーがログインしている時 -->
           <% if customer_signed_in? %>
-            <li>ようこそ、<%= current_customer.last_name + current_customer.first_name %>さん！</li>
-            <li><%= link_to "マイページ", customers_mypage_path %></li>
-            <li><%= link_to "商品一覧", items_path %></li>
-            <li><%= link_to "カート", cart_items_path %></li>
-            <li><%= link_to "ログアウト", destroy_customer_session_path, method: :delete %></li>
+            <li class="mx-10">ようこそ、<%= current_customer.last_name + current_customer.first_name %>さん！</li>
+            <li class="mx-3"><%= link_to "マイページ", customers_mypage_path,class: "nav-item text-light" %></li>
+            <li class="mx-3"><%= link_to "商品一覧", items_path,class: "nav-item text-light" %></li>
+            <li class="mx-3"><%= link_to "カート", cart_items_path,class: "nav-item text-light" %></li>
+            <li class="mx-3"><%= link_to "ログアウト", destroy_customer_session_path, method: :delete,class: "nav-item text-light" %></li>
 
           <!-- 管理者がログインしている時 -->
           <% elsif admin_signed_in? %>
-            <li><%= link_to "商品一覧", admin_items_path %></li>
-            <li><%= link_to "会員一覧", admin_customers_path %></li>
-            <li><%= link_to "注文履歴一覧", admin_path %></li>
-            <li><%= link_to "ジャンル一覧", admin_genres_path %></li>
-            <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
+            <li class="mx-3"><%= link_to "商品一覧", admin_items_path,class: "nav-item text-light" %></li>
+            <li class="mx-3"><%= link_to "会員一覧", admin_customers_path,class: "nav-item text-light" %></li>
+            <li class="mx-3"><%= link_to "注文履歴一覧", admin_path,class: "nav-item text-light" %></li>
+            <li class="mx-3"><%= link_to "ジャンル一覧", admin_genres_path,class: "nav-item text-light" %></li>
+            <li class="mx-3"><%= link_to "ログアウト", destroy_admin_session_path, method: :delete,class: "nav-item text-light" %></li>
 
           <!-- ログインしていない時 -->
           <% else %>
-            <li><%= link_to "商品一覧", items_path %></li>
-            <li><%= link_to "新規登録", new_customer_registration_path %></li>
-            <li><%= link_to "About", about_path %></li>
-            <li><%= link_to "ログイン", new_customer_session_path %></li>
+            <li class="mx-3"><%= link_to "商品一覧", items_path,class: "nav-item text-light" %></li>
+            <li class="mx-3"><%= link_to "新規登録", new_customer_registration_path,class: "nav-item text-light" %></li>
+            <li class="mx-3"><%= link_to "About", about_path,class: "nav-item text-light" %></li>
+            <li class="mx-3"><%= link_to "ログイン", new_customer_session_path,class: "nav-item text-light" %></li>
           <% end %>
 
-        </ul>
+          </ul>
+        </div>
       </div>
     </div>
   </nav>

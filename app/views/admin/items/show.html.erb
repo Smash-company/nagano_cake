@@ -3,10 +3,10 @@
 <div class='container my-5'>
   <div class='row mb-5 d-flex'>
    <h4>
-    <span class=" p-2" style="background-color: #eee;">商品詳細</span>
+    <span class="p-2 text-light" style="background-color: #A5408B;">商品詳細</span>
    </h4>
-    <div class=" col-xs-12 col-lg-4 mt-3 ">
-      <div class="text-center ">
+    <div class="col-xs-12 col-lg-4 mt-3">
+      <div class="text-center">
        <%= image_tag @item.get_image(300,200) %>
       </div>
     </div>
@@ -29,7 +29,7 @@
         </tr>
 
         <tr>
-        <th>税込価格<br>(税抜価格)</th>
+          <th>税込価格<br>(税抜価格)</th>
           <td>
            <h5> <%=@item.add_tax_price.to_s(:delimited) %> (<%= @item.price.to_s(:delimited) %>)円</h5>
           </td>
@@ -37,14 +37,19 @@
 
         <tr>
          <th>販売ステータス</th>
-           <td>
-            <%  if @item.is_active == true %>
-              <p class="text-success">販売中</p>
-            <% else %>
-              <p class="text-secondary">販売停止中です</p>
-            <% end %>
-           </td>
-          <tr><td><%= link_to "編集する", edit_admin_item_path, class:"btn btn-success" %></td></tr>
+          <td>
+          <%  if @item.is_active == true %>
+            <p class="text-success">販売中</p>
+          <% else %>
+            <p class="text-secondary">販売停止中です</p>
+          <% end %>
+          </td>
+        </tr>
+
+        <tr>
+          <td></td>
+          <td><%= link_to "編集する", edit_admin_item_path, class:"btn btn-success" %></td>
+        </tr>
       </table>
     </div>
   </div>

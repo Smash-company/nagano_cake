@@ -1,58 +1,65 @@
-<h2>Sign up</h2>
+<div class="col-2 offset-md-1 my-5">
+  <h3>新規登録</h3>
+</div>
+
 
 <%= form_with model: @customer, url: customer_registration_path do |f| %>
   <%= render "public/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :last_name %>
-    <%= f.text_field :last_name, autofocus: true %>
-    <%= f.label :first_name %>
-    <%= f.text_field :first_name, autofocus: true %>
+  <div class="row my-2">
+    <div class="col-2 offset-md-1"><%= f.label "名前" %></div>
+    <div class="col-1 text-right pr-0"><%= f.label "(姓)" %></div>
+    <div class="col-1"><%= f.text_field :last_name, :size => "10", autofocus: true %></div>
+    <div class="col-1 text-right pr-0"><%= f.label "(名)" %></div>
+    <div class="col-1"><%= f.text_field :first_name, :size => "10", autofocus: true %></div>
   </div>
 
-  <div class="field">
-    <%= f.label :last_name_kana %>
-    <%= f.text_field :last_name_kana, autofocus: true %>
-    <%= f.label :first_name_kana %>
-    <%= f.text_field :first_name_kana, autofocus: true %>
+  <div class="row my-2">
+    <div class="col-2 offset-md-1"><%= f.label "フリガナ" %></div>
+    <div class="col-1 text-right pr-0"><%= f.label "(セイ)" %></div>
+    <div class="col-1"><%= f.text_field :last_name_kana, :size => "10", autofocus: true %></div>
+    <div class="col-1 text-right pr-0"><%= f.label "(メイ)" %></div>
+    <div class="col-1"><%= f.text_field :first_name_kana, :size => "10", autofocus: true %></div>
   </div>
 
-  <div class="field">
-    <%= f.label :email %>
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  <div class="row my-2">
+    <div class="col-3 offset-md-1"><%= f.label "メールアドレス" %></div>
+    <div class="col-3"><%= f.email_field :email, :size => "31", autofocus: true, autocomplete: "email" %></div>
   </div>
 
-  <div class="field">
-  <%= f.label :postal_code %>
-  <%= f.text_field :postal_code, autofocus: true %>
+  <div class="row my-2">
+  <div class="col-3 offset-md-1"><%= f.label "郵便番号(ハイフンなし)" %></div>
+  <div class="col-3"><%= f.text_field :postal_code, :size => "31", autofocus: true %></div>
   </div>
 
-  <div class="field">
-  <%= f.label :address %>
-  <%= f.text_field :address, autofocus: true %>
+  <div class="row my-2">
+  <div class="col-3 offset-md-1"><%= f.label "住所" %></div>
+  <div class="col-3"><%= f.text_field :address, :size => "31", autofocus: true %></div>
   </div>
 
-  <div class="field">
-  <%= f.label :phone_number %>
-  <%= f.text_field :phone_number, autofocus: true %>
+  <div class="row my-2">
+  <div class="col-3 offset-md-1"><%= f.label "電話番号(ハイフンなし)" %></div>
+  <div class="col-3"><%= f.text_field :phone_number, :size => "31", autofocus: true %></div>
   </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %>
-    <%= f.password_field :password, autocomplete: "new-password" %>
+  <div class="row my-2">
+    <div class="col-3 offset-md-1">
+      <%= f.label "パスワード" %>
+      <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> 文字以上)</em>
+      <% end %>
+    </div>
+    <div class="col-3"><%= f.password_field :password, :size => "31", autocomplete: "new-password" %></div>
   </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  <div class="row my-2">
+    <div class="col-3 offset-md-1"><%= f.label "パスワード(確認用)" %></div>
+    <div class="col-3"><%= f.password_field :password_confirmation, :size => "31", autocomplete: "new-password" %></div>
   </div>
 
-  <div class="btn-wrapper col-10 mx-auto">
-    <div class="actions">
-      <%= f.submit "新規登録", class: "btn btn-success" %>
+  <div class="row my-2">
+    <div class="col-2 offset-md-1 mt-3 mb-5">
+      <%= f.submit "新規登録", class: "col btn btn-success" %>
     </div>
   </div>
 <% end %>
