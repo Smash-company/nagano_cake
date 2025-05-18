@@ -4,6 +4,21 @@ ja: # 日本語の設定を行う
       payment_method:
         credit_card: "クレジットカード"
         transfer: "銀行振込"
+
+      status:
+        waiting_for_payment: "入金待ち"
+        confirmed_payment: "入金確認"
+        in_production: "製作中"
+        preparing_for_shipping: "発送準備中"
+        shipped: "発送済"
+        
+    order_detail:
+      making_status:
+        unable_manufacture: "製作不可"
+        waiting_for_manufacture: "製作待ち"
+        in_production: "製作中"
+        production_completed: "製作完了"
+
   activerecord:
     errors:
       messages:

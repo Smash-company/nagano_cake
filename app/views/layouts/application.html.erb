@@ -10,22 +10,20 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body class="d-flex flex-column vh-100">
+  <body class="d-flex flex-column vh-100" style="background-color : #FFEDFA">
 
-  <!--ヘッダー部分（予定）-->
+  <!--ヘッダー部分-->
+  <%= render 'layouts/header' %>
 
-  <div><%= render 'layouts/header' %></div>
-
-  <!--ボディ部分（予定）-->
-  <main style="background-color: #FFEDFA;">
+  <!--メイン部分-->
+  <main class="mb-auto">
     <p class='text-success'><%= flash[:notice] %></p>
     <p class='text-danger'><%= flash[:alert] %></p>
 
     <%= yield %>
   </main>
 
-  <!--フッター部分（予定）-->
-
+  <!--フッター部分-->
   <%= render "layouts/footer" %>
 
   </body>

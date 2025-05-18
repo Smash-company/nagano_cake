@@ -3,8 +3,8 @@
 <div class ="container">
   <div class ="row">
     <h5 class="my-5">
-      <span class ="p-2" style="background-color: #eee;">
-        注文履歴一覧
+      <span class ="p-2 text-light" style="background-color: #A5408B;">
+        <strong>注文履歴一覧</strong>
       </span>
     </h5>
   </div>
@@ -13,7 +13,7 @@
       <div class = "col">
         <table class ="table">
           <thead>
-            <tr class ="p-2" style="background-color: #eee;">
+            <tr class ="p-2 text-light" style="background-color: #A5408B;">
               <th>購入日時</th>
               <th>購入者</th>
               <th>注文個数</th>
@@ -24,9 +24,7 @@
             <% @orders.each do |order| %>
               <tr>
                 <td>
-                  <%= link_to admin_order_path(order) do %>
-                  <%= order.created_at.strftime("%Y/%m/%d %H:%M:%S") %>
-                <% end %>
+                  <%= link_to order.created_at.strftime("%Y/%m/%d %H:%M:%S"),admin_order_path(order), style: "color: #5EBFDA;" %>
                 </td>
                 <td><%= order.name %></td>
                 <td>

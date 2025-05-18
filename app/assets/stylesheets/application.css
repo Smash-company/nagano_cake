@@ -13,12 +13,3 @@
  *= require_tree .
  *= require_self
  */
-
- .bg-img{
-  background-image: url('images/lineup.jpg');
-  background-size: cover;
-  background-position: center;
-  border-radius: 20px;
-  height: 400px;
-  width: 100%;
-}

@@ -1,5 +1,5 @@
 class Admin::HomesController < ApplicationController
-  before_action :authenticate_admin!, except: [:top, :about]
+  before_action :authenticate_admin!
   
   def top
     @orders = Order.all
