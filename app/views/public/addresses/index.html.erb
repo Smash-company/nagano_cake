@@ -16,29 +16,29 @@
               </ul>
             </div>
           <% end %>
-        <%= form_with(model: @address, local: true, ) do |form| %>
+        <%= form_with model: @address, local: true do |f| %>
         <div class="form-group row">
           <label for="postal_code" class="col-3 mr-2">郵便番号(ハイフンなし)</label> 
           <div class='col-3'>
-          <%= form.text_field :postal_code, class: 'form-control', placeholder: '0000000'%>
+          <%= f.text_field :postal_code, class: 'form-control', placeholder: '0000000'%>
           </div>
         </div>
 
         <div class="form-group row">
           <label for="address" class="col-3 mr-2">住所</label>
           <div class='col-5'>
-          <%= form.text_area :address, class: 'form-control', placeholder: '東京都渋谷区代々木神園町0-0', rows: 1%>
+          <%= f.text_area :address, class: 'form-control', placeholder: '東京都渋谷区代々木神園町0-0', rows: 1%>
           </div>
         </div>
 
         <div class="form-group row">
           <label for="name" class="col-3 mr-2">宛名</label>
           <div class='col-3'>
-          <%= form.text_field :name, class: 'form-control', placeholder: '令和道子'%>
+          <%= f.text_field :name, class: 'form-control', placeholder: '令和道子'%>
         </div>
 
         <div class='col-3 offset-2'> 
-          <%= form.submit '新規登録', class: 'btn btn-success' %>
+          <%= f.submit '新規登録', class: 'btn btn-success' %>
         </div>  
         </div>
         <% end %>
@@ -63,7 +63,7 @@
             <td style="border-color: black;"><%= address.address %></td>
             <td style="border-color: black;"><%= address.name %></td>
             <td style="border-color: black;">
-              <%= link_to '編集する', edit_address_path(address), class: "btn btn-success btn-sm" %>
+              <%= link_to '編集する', edit_address_path(address.id), class: "btn btn-success btn-sm" %>
               <%= link_to '削除する', address, method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-danger btn-sm" %>
             </td>
           </tr>
