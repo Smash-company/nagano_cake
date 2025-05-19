@@ -1,7 +1,9 @@
 <%- if controller_name != 'sessions' %>
 <div class="row">
   <div class="col-4 offset-md-1">
-    <h4>すでに登録済みの方</h4>
+    <h4>
+      <span class="p-2 text-light" style="background-color: #A5408B;">すでに登録済みの方</span>
+    </h4>
     <p class="my-3">
       <strong><%= link_to "こちら", new_session_path(resource_name), style: "color: #5EBFDA;" %></strong> からログインしてください。
     </p>
@@ -12,7 +14,9 @@
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
 <div class="row">
   <div class="col-4 offset-md-1">
-    <h4>会員登録がお済みでない方</h4>
+    <h4>
+      <span class="p-2 text-light" style="background-color: #A5408B;">会員登録がお済みでない方</span>
+    </h4>
     <p class="my-3">
       <strong><%= link_to "こちら", new_registration_path(resource_name), style: "color: #5EBFDA;" %></strong> から新規登録を行ってください。
     </p>
