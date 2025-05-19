@@ -13,7 +13,7 @@
       </tr>
       <tr>
         <td>支払方法</td>
-        <td><%= @order.pay_method_i18n %></td>
+        <td><%= @order.payment_method_i18n %></td>
       </tr>
       <tr>
         <td>ステータス</td>
@@ -25,7 +25,7 @@
     <table class="table">
       <tr>
         <td>商品合計</td>
-        <td><%= @order.total_price %></td>
+        <td><%= @order.total_amount %></td>
       </tr>
       <tr>
         <td>配送料</td>
@@ -45,12 +45,12 @@
         <td>個数</td>
         <td>小計</td>
       </tr>
-      <% @order_details.each do |order_detail| %>
+      <% @order.order_details.each do |order_detail| %>
         <tr>
           <td><%= order_detail.item.name %></td>
-          <td><%= order_detail.item.price %></td>
-          <td><%= order_detail.quantity %></td>
-          <td><%= order_detail.quantity * order_detail.item.price %></td>
+          <td><%= order_detail.item.add_tax_price.to_s(:delimited) %></td>
+          <td><%= order_detail.amount %></td>
+          <td><%= order_detail.get_subtotal.to_s(:delimited) %></td>
         </tr>
       <% end %>
     </table>
