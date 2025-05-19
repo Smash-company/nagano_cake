@@ -20,7 +20,7 @@ class Order < ApplicationRecord
   def get_items_total_price
     items_total_price = 0
     order_details.each do |order_detail|
-      items_total_price += order_detail.price
+      items_total_price += order_detail.price * order_detail.amount
     end
     items_total_price
   end

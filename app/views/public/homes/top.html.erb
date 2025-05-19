@@ -1,37 +1,40 @@
-<div class="container m-5">
-  <div class="row m-5">
-    <div class="col-12 col-md-8 col-lg-2">
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-lg-3">
      <%= render "public/shared/sidebar", genres: @genres %>
     </div>
-    <div class="col-12 col-lg-9">
-      <div class="bg-img d-flex justify-content-center align-items-center mb-5">
+    <div class="col-sx-12 col-lg-9 my-5">
+      <div class="card">
+        <%= image_tag("lineup.jpg", class: "card-img", size: "400x350") %>
         <% if !customer_signed_in? %>
-          <p class="bg-white p-3 rounded" style="opacity: 75%;">
-            ようこそ、NaganoCakeへ！<br>
-            このサイトは、ケーキ販売のECサイトになります。<br>
-            会員でない方も商品の閲覧はできますが、<br>
-            購入には会員登録が必要になります。
-          </p>
+          <div class="card-img-overlay d-flex align-items-start justify-content-center">
+            <div class="ml-3">
+              <div class="bg-white p-5 " style="opacity: 75%;">
+                <p class="text-dark">
+                <strong>ようこそ、NaganoCakeへ！</strong><br><br>
+                このサイトは、ケーキ販売のECサイトになります。<br>
+                会員でない方も商品の閲覧はできますが、<br>
+                購入には会員登録が必要になります。
+                </p>
+              </div>
+            </div>
+          </div>
         <% end %>
       </div>
       
-      <div class="row mb-3">
-  		  <h3 class="col-12">
+  		  <h2 class="mx-3 my-5 border border-3 rounded-top col-4 text-center">
   		    <strong>新着商品</strong>
-  		  </h3>
-  		</div>
+  		  </h2>
       
   		<div class="col-md-12 col-lg-12 px-0">
         <div class="row">
           <% @items.each do |item| %>
             <div class="col-md-3">
               <%= link_to item_path(item.id) do %>
-                <%= image_tag item.get_image(150,100) %><br>
+                <%= image_tag item.get_image(150,100) %><br><br>
+                <strong class="item_name my-3" style="color: #5EBFDA;"><%= item.name %></strong><br>
               <% end %>
-              <%= link_to item_path(item.id) do %>
-                <p class="item_name my-3"><%= item.name %></p>
-              <% end %>
-              <p>¥<%= item.add_tax_price.to_s(:delimited) %></p>
+              <strong class="my-2">¥<%= item.price.to_s(:delimited) %></strong>
             </div>
           <% end %>
         </div>
@@ -40,9 +43,9 @@
   </div>
   
   <div class="row">
-  	  <div class="col-md-9 col-lg-10"></div>
-  	  <div class="col-md-3 col-lg-2">
-  	    <%= link_to "全ての商品を見る＞", items_path %>
+  	  <div class="col-md-9 col-lg-9"></div>
+  	  <div class="col-md-3 col-lg-3 my-3">
+  	    <strong><%= link_to "全ての商品を見る＞",items_path , style: "color: #5EBFDA;"%></strong>
   	  </div>
     </div>
 </div>

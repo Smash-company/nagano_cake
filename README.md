@@ -1,24 +1,27 @@
-# README
+# ながのCAKE
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイト概要
+長野県にある小さな洋菓子店「ながのCAKE」の商品を通販するためのECサイト
 
-Things you may want to cover:
+## サイト画像
 
-* Ruby version
+​
+## 設計書
 
-* System dependencies
+​
+## 開発環境
+- OS：Linux(CentOS)
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- JSライブラリ：jQuery
+- IDE：Visual Studio Code
+- 描画ツール：Canva
+​
+## 使用素材
+- いらすとや
+- pexels
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## 作者
+- なかじ
+- ぐっち
+- ずーの

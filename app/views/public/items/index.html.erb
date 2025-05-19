@@ -1,19 +1,15 @@
 <!--Customer用商品登録一覧ページ-->
 
 <div class="container">
-  <div class="row mt-5 mb-3">
-    <div class="col-3"></div>
-    <h2><strong>商品一覧</strong></h2>
-    <h5>（全<%= @active_items_count %>件）</h5>
-  </div>
-
   <div class="row">
     <!-- ジャンル検索サイドバー / パーシャル表示 -->
     <div class="col-12 col-lg-3">
       <%= render "public/shared/sidebar", genres: @genres%>
     </div>
-    <div class="col-md-12 col-lg-9">
-      <div class="row">
+    <div class="col-md-12 col-lg-9 my-5">
+    <h2 class="mx-3 my-2 border border-3 rounded-top col-4 text-center"><strong>商品一覧</strong></h2>
+      <h5 class="mx-3 my-2">（全<%= @active_items_count %>件）</h5>
+      <div class="row my-5">
         <!--商品一覧を表示・コントローラで販売ステータスtrueのみを指定-->
         <% @items.each do |item| %>
           <!--商品画像・商品名に詳細ページへリンクをつける-->
@@ -23,7 +19,7 @@
               <% end %>
               <%= link_to item_path(item.id) do %>
                 <p class="item_name">
-                  <strong><%= item.name %></strong>
+                  <strong style="color: #5EBFDA;"><%= item.name %></strong>
                 </p>
               <% end %>
               <!--税抜金額の表示-->
