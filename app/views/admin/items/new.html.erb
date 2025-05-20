@@ -1,2 +1,63 @@
-<h1>Admin::Items#new</h1>
-<p>Find me in app/views/admin/items/new.html.erb</p>
+<!--Admin用商品新規登録ページ-->
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8 px-sm-0 offset-sm-1">
+      <h5>
+        <span class="p-2 text-light" style="background-color: #A5408B;">商品新規登録</span>
+      </h5>
+    </div>
+  </div>
+
+  <div class="row col-md-auto">
+    <div class="col-sm-12 px-sm-0 mb-5">
+  <%= form_with model: @item, url:"/admin/items" do |f| %>
+      <table class="table table-borderless col-8">
+      <tr>
+        <div class="form-group">
+        <th><%= f.label :商品画像 %></th>
+        <th><%= f.file_field :image, accept: "image/*" %></th>
+        </div>
+      </tr>
+
+      <tr>
+        <th>商品名</th>
+        <td><%= f.text_field :name, placeholder:"商品名" %></td>
+      </tr>
+
+      <tr>
+        <th>本文</th>
+        <td><%= f.text_area :opinion, size: "50x5", placeholder:"ここに説明文を記述します" %></td>
+      </tr>
+
+      <tr>
+        <div class="form-group">
+        <th><%= f.label :ジャンル %></th>
+        <td><%= f.collection_select :genre_id, Genre.all, :id, :name, :prompt => "--選択してください--" %></td>
+        </div>
+      </tr>
+
+      <tr>
+        <th>税抜価格</th>
+        <td><%= f.text_field :price, placeholder:"1000" %>円</td>
+      </tr>
+
+
+      <tr>
+        <th>販売ステータス</th>
+          <td><%= f.radio_button :is_active, true, checked: true %>
+            <%= f.label :is_active, "販売中" %>
+            <%= f.radio_button :is_active, false %>
+            <%= f.label :is_active, "販売停止中" %>
+          </td>
+      </tr>
+
+      <tr>
+        <th></th>
+        <th><%= f.submit "新規登録", class:"btn btn-success" %></th>
+      </tr>
+      </table>
+      <% end %>
+    </div>
+  </div>
+</div>

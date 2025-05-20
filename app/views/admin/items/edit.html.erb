@@ -1,2 +1,65 @@
-<h1>Admin::Items#edit</h1>
-<p>Find me in app/views/admin/items/edit.html.erb</p>
+<!--Admin用商品編集ページ-->
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8 px-sm-0 offset-sm-1">
+      <h5>
+        <span class=" p-2 text-light" style="background-color: #A5408B;">商品編集</span>
+      </h5>
+    </div>
+  </div>
+  <div class="row col-md-auto">
+    <div class="col-sm-12 px-sm-0 mb-5">
+      <%= form_with model: @item, url: admin_item_path, local: true do |f| %>
+      <table class="table table-borderless col-8">
+        <tr>
+          <div class="form-group">
+            <th><%= f.label :商品画像 %></th>
+            <td><%= f.file_field :image, placeholder: "商品画像", accept: "image/*" %>  </td>
+          </div>
+        </tr>
+        <tr>
+          <div class="form-group">
+            <th><%= f.label :商品名 %></th>
+            <td><%= f.text_field :name, placeholder:"商品名" %></td>
+          </div>
+        </tr>
+        <tr>
+          <div class="form-group">
+            <th><%= f.label :商品説明 %></th>
+            <td><%= f.text_area :opinion, size: "50x5", placeholder:"ここに説明文を記述します" %></td>
+          </div>
+        </tr>
+        <tr>
+          <div class="form-group">
+            <th><%= f.label :ジャンル %></th>
+            <td><%= f.collection_select :genre_id, Genre.all, :id, :name, :prompt => "--選択してください--" %></td>
+          </div>
+        </tr>
+        <tr>
+          <div class="form-group">
+            <th><%= f.label :税抜価格 %></th>
+            <td><%= f.text_field :price, placeholder:"1000" %>円</td>
+          </div>
+        </tr>
+        <tr>
+          <div class="form-group">
+            <th><%= f.label :販売ステータス %></th>
+            <td>
+            <%= f.radio_button :is_active, true, checked: true %>
+            <%= f.label :is_active, "販売中" %>
+            <%= f.radio_button :is_active, false %>
+            <%= f.label :is_active, "販売中止" %>
+            </td>
+          </div>
+        </tr>
+        <tr>
+          <div class="form-action">
+            <td><%= f.submit "変更を保存", class:"btn btn-success" %></td>
+          </div>
+        </tr>
+      </table>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -50,10 +50,15 @@ class Public::RegistrationsController < Devise::RegistrationsController
   #   devise_parameter_sanitizer.permit(:account_update, keys: [:attribute])
   # end
 
-  # The path used after sign up.
-  # def after_sign_up_path_for(resource)
-  #   super(resource)
-  # end
+  before_action :configure_permitted_parameters, if: :devise_controller?
+
+  def after_sign_up_path_for(resource)
+    customers_mypage_path
+  end
+  
+  def configure_sign_up_params
+    devise_parameter_sanitizer.permit(:sign_up, keys:[:name])
+  end
 
   # The path used after sign up for inactive accounts.
   # def after_inactive_sign_up_path_for(resource)

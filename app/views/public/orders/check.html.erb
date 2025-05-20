@@ -1,2 +1,74 @@
-<h1>Public::Orders#check</h1>
-<p>Find me in app/views/public/orders/check.html.erb</p>
+<div class='container my-5'>
+
+  <h4 class='row mb-5'>
+    <span class='heading-title'>注文情報確認</span>
+  </h4>
+  
+  <div class = "row">
+    <table class = "table table-bordered col-7">
+      <tr class="text-light" style="background-color: #A5408B;">
+        <th>商品名</th>
+        <th>単価(税込)</th>
+        <th>数量</th>
+        <th>小計</th>
+      </tr>
+      <% @cart_items.each do |cart_item| %>
+      <tr>
+        <td>
+          <%= image_tag cart_item.item.get_image(60,40) %>
+          <strong><%= cart_item.item.name %></strong>
+        </td>
+        <td  class="align-middle">
+          <%= cart_item.item.add_tax_price.to_s(:delimited) %>
+        </td>
+        <td class="align-middle">
+          <%= cart_item.amount %>
+        </td>
+        <td class="align-middle">
+          <%= cart_item.subtotal.to_s(:delimited) %>
+        </td>
+      </tr>
+      <% @total = @total + cart_item.subtotal.to_i %>
+      <% end %>
+    </table>
+
+    <table class = "table table-bordered offset-1 col-4">
+      <tr>
+        <th class="text-light" style="background-color: #A5408B;">送料</th>
+        <% @order.postage %>
+        <td><%= @order.postage %></td>
+      </tr>
+      <tr>
+        <th class="text-light" style="background-color: #A5408B;">商品合計</th>
+        <td><%= @total.to_s(:delimited) %></td>
+      <tr>
+        <th class="text-light" style="background-color: #A5408B;">請求金額</th>
+        <% @order.total_amount = @order.postage.to_i + @total.to_i %>
+        <td><%= @order.total_amount.to_s(:delimited) %></td>
+      </tr>
+    </table>
+  </div>
+  <div class="row d-flex">
+    <h4><strong>支払方法</strong></h4>
+    <P class="ml-3 fw-bold"><%= @order.payment_method_i18n %></P>
+  </div>
+  <div class="row d-flex">
+    <h4><strong>お届け先</strong></h4>
+    <p class="ml-3">〒<%= @order.postal_code.insert(3,'-') %> <%= @order.address %><br><%= @order.name %></p>
+ </div>
+
+
+  <div class="row justify-content-center">
+    <%= form_with model: @order, url: orders_path, method: :post, local: true do |f| %>
+      <%= f.hidden_field :customer_id %>
+      <%= f.hidden_field :postage %>
+      <%= f.hidden_field :total_amount %>
+      <%= f.hidden_field :payment_method %>
+      <%= f.hidden_field :postal_code %>
+      <%= f.hidden_field :address %>
+      <%= f.hidden_field :name %>
+      <%= f.hidden_field :status %>
+      <%= f.submit "注文を確定する" , class:"btn btn-success" %>
+    <% end %>
+  </div>
+</div>
